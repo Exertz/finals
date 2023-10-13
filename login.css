@@ -1,0 +1,159 @@
+/* Importing the 'Poppins' font from Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+/* Resetting default styles and setting font-family */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Styling for the HTML and body elements */
+html, body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: #f2f2f2; /* Background color */
+}
+
+/* Styling for text selection */
+::selection {
+  background: #4158d0; /* Selection background color */
+  color: #fff; /* Selection text color */
+}
+
+/* Styling for the main wrapper element */
+.wrapper {
+  width: 380px;
+  background: #fff; /* Background color */
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Styling for the title inside the wrapper */
+.wrapper .title {
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 100px;
+  color: #fff; /* Text color */
+  user-select: none;
+  border-radius: 15px 15px 0 0;
+  background: linear-gradient(-135deg, #c850c0, #4158d0); /* Gradient background */
+}
+
+/* Styling for the form within the wrapper */
+.wrapper form {
+  padding: 10px 30px 50px 30px;
+}
+
+/* Styling for form fields */
+.wrapper form .field {
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Styling for input fields within form fields */
+.wrapper form .field input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  border: 1px solid lightgrey; /* Border style */
+  border-radius: 25px; /* Border radius */
+  transition: all 0.3s ease; /* Transition effect */
+}
+
+/* Styling for focused or valid input fields */
+.wrapper form .field input:focus,
+form .field input:valid {
+  border-color: #4158d0; /* Border color on focus or valid input */
+}
+
+/* Styling for labels within form fields */
+.wrapper form .field label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  color: #999999; /* Label text color */
+  font-weight: 400;
+  font-size: 17px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+/* Styling for labels when input is focused or valid */
+form .field input:focus ~ label,
+form .field input:valid ~ label {
+  top: 0%;
+  font-size: 16px;
+  color: #4158d0; /* Label text color when focused or valid */
+  background: #fff; /* Label background color */
+  transform: translateY(-50%);
+}
+
+/* Styling for the content section of the form */
+form .content {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Styling for the checkbox within the content section */
+form .content .checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styling for the submit button */
+form .field input[type="submit"] {
+  color: #fff; /* Text color */
+  border: none;
+  padding-left: 0;
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #c850c0, #4158d0); /* Gradient background for the button */
+  transition: all 0.3s ease; /* Transition effect */
+}
+
+/* Styling for the submit button when clicked (active state) */
+form .field input[type="submit"]:active {
+  transform: scale(0.95); /* Scale down the button when clicked */
+}
+
+/* Styling for the signup link */
+form .signup-link {
+  color: #262626; /* Text color */
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Styling for links within the form */
+form .pass-link a,
+form .signup-link a {
+  color: #4158d0; /* Link color */
+  text-decoration: none;
+}
+
+/* Styling for links on hover */
+form .pass-link a:hover,
+form .signup-link a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* CSS to center text within the "centered" class */
+.centered {
+  text-align: center;
+}

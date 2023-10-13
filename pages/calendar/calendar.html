@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Calendar with Animated Hamburger Menu</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="calendar.css">
+</head>
+
+<body>
+    <div class="container">
+            <div class="hamburger-menu" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="calendar">
+                <div class="month">
+                    <div class="prev" onclick="previousMonth()">&#8249;</div>
+                    <div class="current-month"></div>
+                    <div class="next" onclick="nextMonth()">&#8250;</div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <thead>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </thead>
+                    </thead>
+                    <tbody class="days">
+                        <!-- Calendar dates will be added here -->
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+        <!-- Menu -->
+        <div class="menu" id="menu">
+            <div class="menu-item">Services</div>
+            <div class="menu-item">Payments</div>
+            <div class="menu-item">Portfolio</div>
+        </div>
+    </div>
+    
+    <!-- Booking Form (Initially hidden) -->
+    <form action="../../script/process_booking.php" method="POST">
+        <div id="booking-form" class="booking-form">
+            <span id="close-button" onclick="closeBookingForm()">&times;</span>
+            <h2>SESSION INFORMATION</h2>
+            <label for="session-type">Session Type</label>
+            <select id="session-type"  required>
+                <option value="" disabled selected>Select Type</option>
+                <option value="corporate events">Corporate Events</option>
+                <option value="portraits">Portraits</option>
+                <option value="commercial shoots">Commercial Shoots</option>
+                <option value="weddings">Weddings</option>
+                <option value="social events">Social Events</option>
+                <!-- Add more options as needed -->
+            </select><br><br>
+            
+            <label for="session-category">Session Type</label>
+            <select class="select" id="session-category" name="SessionCategory" required>
+                <!-- Add more options as needed -->
+            </select><br><br>
+
+            <label for="session-date">Session Date</label>
+            <input type="date" id="session-date" name="SessionDate" required><br><br>
+
+            <label for="start-time">Start Time</label>
+            <input type="time" id="start-time" name="StartTime" required><br><br>
+
+            <label for="end-time">End Time</label>
+            <input type="time" id="end-time" name="EndTime" required><br><br>
+
+            <label for="service-selection">ServiceSelection</label>
+            <select class="select" id="service-type" name="ServiceSelection" required>
+                <!-- Add more options as needed -->
+                <option value="photo">Photo</option>
+                <option value="video">Video</option>
+                <option value="photoandvideo">Photo and Video</option>
+            </select><br><br>
+
+            <!-- Add Event Location Input -->
+            <label for="event-location">Event Location:</label>
+            <div>
+                <div class="location-inputs">
+                    <input type="text" id="street-address" name="StreetAddress" placeholder="Street Address" required style="width: 30%;">
+                </div>
+                <div>
+                    <input type="text" id="city" name="City" placeholder="City" required style="width: 30%;">
+                    <input type="text" id="postal-code" name="PostalCode" placeholder="Postal/Zip Code" required style="width: 30%;">
+            </div>
+
+            <!-- Add Booking Suggestions Input -->
+            <label for="booking-suggestion">Booking Suggestions:</label>
+            <div class="location-inputs">
+                <input type="text" id="booking-suggestions" name="BookingSuggestions" placeholder="Feel free to share any specific requests, preferred styles, or special moments you want to capture. Your input matters, and we're here to tailor your session to your vision.">
+            </div>
+
+            <!-- Add meeting preferences options -->
+            <label for="payment-method">Meeting Preference:</label>
+            <div>
+                <input type="radio" id="cash" name="MeetingPreference" value="cash" required>
+                <label for="cash">I prefer an in-person meeting with the photographer.</label><br>
+            </div>
+            <div>
+                <input type="radio" id="online" name="MeetingPreference" value="online" required>
+                <label for="online">I prefer to meet the photographer through a Zoom link.</label><br>
+            </div>
+
+            <!-- Add the payment-related label and options -->
+            <label for="payment-method">How would you like to do the payment?</label>
+            <div>
+                <input type="radio" id="cash-payment" name="PaymentMethod" value="cash" required>
+                <label for="cash-payment">Cash</label><br>
+            </div>
+            <div>
+                <input type="radio" id="online-payment" name="PaymentMethod" value="online" required>
+                <label for="online-payment">Online</label><br>
+            </div>
+
+            <button type="submit">Submit</button>
+</div>
+    </form>
+
+
+    <!-- Include Bootstrap JS and Popper.js (for Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const daysElement = document.querySelector(".days");
+        const currentMonthElement = document.querySelector(".current-month");
+        const menuElement = document.getElementById("menu");
+        const hamburgerMenu = document.querySelector(".hamburger-menu");
+        const bookingForm = document.getElementById("booking-form");
+        const bookingButton = document.getElementById("booking-button");
+        const sessionTypeSelect = document.getElementById("session-type");
+        const sessionCategorySelect = document.getElementById("session-category");
+        
+
+        const selectedDate = new Date();
+
+        const MONTHS = {
+            "JAN": 0,
+            "FEB": 1,
+            "MAR": 2,
+            "APR": 3,
+            "MAY": 4,
+            "JUN": 5,
+            "JUL": 6,
+            "AUG": 7,
+            "SEPT": 8,
+            "OCT": 9,
+            "NOV": 10,
+            "DEC": 11,
+        }
+
+        const categories = {
+            corporate_events:[
+                'Conference',
+                'Corporate Parties',
+                'Product Launches',
+                'Seminars',
+                'Team-Building Activities'
+            ],
+            commercial_shoots:[
+                'Advertising Campaigns',
+                'Fashion Shoots'
+            ],
+            portraits:[
+                'Family Portraits',
+                'Lifestyle Photography',
+                'Professional Headshots',
+                'Senior Portraits'
+            ],
+            social_events:[
+                'Anniversaries',
+                'Baby Showers',
+                'Birthdays',
+                'Graduations',
+            ],
+            weddings:[
+                'Bridal Showers',
+                'Ceremonies',
+                'Engagement Parties',
+                'Reception',
+            ],
+        }
+
+        sessionTypeSelect.addEventListener("change",(e)=>{
+            switch (e.target.value) {
+                case "corporate events":{
+                    const options = categories.corporate_events;
+                    sessionCategorySelect.innerHTML = "";
+                    options.forEach(opt => {
+                        optionEl = document.createElement("option");
+                        optionEl.setAttribute('value',opt)
+                        optionEl.innerHTML = opt;
+                        sessionCategorySelect.appendChild(optionEl);
+                    });
+                }
+                    break;
+                case "portraits":
+                    {
+                        const options = categories.portraits;
+                        sessionCategorySelect.innerHTML = "";
+                        options.forEach(opt => {
+                        optionEl = document.createElement("option");
+                        optionEl.setAttribute('value',opt)
+                        optionEl.innerHTML = opt;
+                        sessionCategorySelect.appendChild(optionEl);
+                         });
+                    }
+                    break;
+                case "commercial shoots":
+                    {
+                        const options = categories.commercial_shoots;
+                        sessionCategorySelect.innerHTML = "";
+                        options.forEach(opt => {
+                        optionEl = document.createElement("option");
+                        optionEl.setAttribute('value',opt)
+                        optionEl.innerHTML = opt;
+                        sessionCategorySelect.appendChild(optionEl);
+                    });
+                    }
+                    break;
+                case "weddings":
+                    {
+                        const options = categories.weddings;
+                        sessionCategorySelect.innerHTML = "";
+                        options.forEach(opt => {
+                        optionEl = document.createElement("option");
+                        optionEl.setAttribute('value',opt)
+                        optionEl.innerHTML = opt;
+                        sessionCategorySelect.appendChild(optionEl);
+                    });
+                    }
+                    break;
+                case "social events":
+                    {
+                        const options = categories.social_events;
+                        sessionCategorySelect.innerHTML = "";
+                        options.forEach(opt => {
+                        optionEl = document.createElement("option");
+                        optionEl.setAttribute('value',opt)
+                        optionEl.innerHTML = opt;
+                        sessionCategorySelect.appendChild(optionEl);
+                    });
+                    }
+                    break;
+            }
+        })
+
+        function generateCalendar(date) {
+        daysElement.innerHTML = "";
+        const year = date.getFullYear();
+        const month = date.getMonth();
+
+        currentMonthElement.textContent = date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+        const today = new Date();
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const totalDays = lastDayOfMonth.getDate();
+
+        let currentDay = 1;
+
+        let currentRow = document.createElement("tr");
+        daysElement.appendChild(currentRow);
+
+        for (let i = 0; i < firstDayOfMonth.getDay(); i++) {
+            // Fill in leading empty cells with blanks
+            const dayElement = document.createElement("td");
+            dayElement.classList.add("past-date");
+            currentRow.appendChild(dayElement);
+        }
+        while (currentDay <= totalDays) {
+            const currentDate = new Date(year, month, currentDay);
+            const dayOfWeek = currentDate.getDay();
+            const dayElement = document.createElement("td");
+
+            // Create a container for the date text
+            const dateTextContainer = document.createElement("div");
+            dateTextContainer.className = "date-text-container";
+
+            // Check if the date is today's date
+            if (currentDate.toDateString() === today.toDateString()) {
+                dateTextContainer.classList.add("today");
+                // Add a click event listener to open the booking form for today's date
+                dateTextContainer.addEventListener("click", () => openBookingForm(currentDate));
+            } else if (currentDate < today) {
+                // Check if the date is in the past
+                dayElement.classList.add("past-date");
+                // Disable click event for past dates
+                dateTextContainer.style.pointerEvents = "none";
+            } else {
+                // Add a click event listener to open the booking form for future dates
+                dateTextContainer.addEventListener("click", () => openBookingForm(currentDate));
+            }
+
+            // Create a span for each date
+            const dateSpan = document.createElement("span");
+            dateSpan.textContent = currentDay;
+
+            // Add the date text and text container to the cell
+            dateTextContainer.appendChild(dateSpan);
+            dayElement.appendChild(dateTextContainer);
+            currentRow.appendChild(dayElement);
+
+            if (dayOfWeek === 6) {
+                currentRow = document.createElement("tr");
+                daysElement.appendChild(currentRow);
+            }
+
+            currentDay++;
+            }
+        }
+
+        function toggleBookingForm() {
+            if (bookingForm.style.display === "block") {
+                bookingForm.style.display = "none";
+            } else {
+                bookingForm.style.display = "block";
+            }
+        }
+
+        function openBookingForm(date) {
+             // You can implement your booking logic here.
+            // For example, you can open a booking form with the selected date.
+            // In this function, you can access the selected date as 'date'.
+
+            // Example: Open a booking form and set the date input
+            toggleBookingForm();
+        document.getElementById("date").valueAsDate = date;
+        }
+
+        function closeBookingForm() {
+            bookingForm.style.display = "none";
+        }
+
+        function nextMonth() {
+            const nextMonth = selectedDate.getMonth() + 1;
+            selectedDate.setMonth(nextMonth);
+            generateCalendar(selectedDate);
+        }
+
+        function previousMonth() {
+            const prevMonth = selectedDate.getMonth() - 1;
+
+            // Disable the previous month
+            if (prevMonth < new Date().getMonth() && selectedDate.getFullYear() == new Date().getFullYear())
+                return;
+            // Exit the function
+
+            selectedDate.setMonth(prevMonth);
+            generateCalendar(selectedDate);
+        }
+
+        function toggleMenu() {
+            menuElement.style.display = menuElement.style.display === 'block' ? 'none' : 'block';
+            hamburgerMenu.classList.toggle('change');
+        }
+
+        generateCalendar(selectedDate);
+    </script>
+</body>
+</html>
