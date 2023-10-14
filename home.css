@@ -1,0 +1,8 @@
+rounded-rectangle {
+    border-radius: 20px; /* You can adjust the radius to control the roundness */
+    overflow: hidden;
+  }
+  .rounded-rectangle img {
+    width: 100%; /* Ensure the image takes the full width of the container */
+    height: auto; /* Maintain the image's aspect ratio */
+  }
