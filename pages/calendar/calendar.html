@@ -351,8 +351,9 @@
             const day = date.getDate().toString().padStart(2, '0');
 
             // Set the value of the session-date input
-            sessionDateInput.value = ${year}-${month}-${day};
+            sessionDateInput.value = `${year}-${month}-${day}`;
         }
+        
         function closeBookingForm() {
             bookingForm.style.display = "none";
         }
