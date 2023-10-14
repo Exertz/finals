@@ -335,15 +335,24 @@
         }
 
         function openBookingForm(date) {
-             // You can implement your booking logic here.
+            // You can implement your booking logic here.
             // For example, you can open a booking form with the selected date.
             // In this function, you can access the selected date as 'date'.
 
             // Example: Open a booking form and set the date input
             toggleBookingForm();
-        document.getElementById("date").valueAsDate = date;
-        }
 
+            // Access the session-date input element
+            const sessionDateInput = document.getElementById("session-date");
+
+            // Format the date in YYYY-MM-DD format (required by input type="date")
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-based, so add 1
+            const day = date.getDate().toString().padStart(2, '0');
+
+            // Set the value of the session-date input
+            sessionDateInput.value = ${year}-${month}-${day};
+        }
         function closeBookingForm() {
             bookingForm.style.display = "none";
         }
