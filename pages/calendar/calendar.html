@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Calendar with Animated Hamburger Menu</title>
+    <title>Booking Calendar</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="calendar.css">
@@ -15,27 +15,18 @@
             <div class="calendar">
                 <a href="../finals/home/home.html" class="btn btn-primary">Back to Homepage</a>
                 <!-- Move legends here -->
-                <div class="legends">
+                <!-- <div class="legends">
                     <div class="legend-item today"></div>
                     <div class="legend-text">Today</div>
                     <div class="legend-item past-date"></div>
                     <div class="legend-text">Past Date</div>
                     <div class="legend-item holiday"></div>
                     <div class="legend-text">Holiday</div>
-                </div>
+                </div> -->
                 <div class="month">
                     <div class="prev" onclick="previousMonth()">&#8249;</div>
                     <div class="current-month"></div>
                     <div class="next" onclick="nextMonth()">&#8250;</div>
-                </div>
-                <!-- Move legends here -->
-                <div class="legends">
-                    <div class="legend-item today"></div>
-                    <div class="legend-text">Today</div>
-                    <div class="legend-item past-date"></div>
-                    <div class="legend-text">Past Date</div>
-                    <div class="legend-item holiday"></div>
-                    <div class="legend-text">Holiday</div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -89,6 +80,7 @@
             <label for="service-selection">ServiceSelection</label>
             <select class="select" id="service-type" name="ServiceSelection" required>
                 <!-- Add more options as needed -->
+                <option value="" disbaled selected>Select Type</option>
                 <option value="photo">Photo</option>
                 <option value="video">Video</option>
                 <option value="photoandvideo">Photo and Video</option>
@@ -335,15 +327,22 @@
             currentRow.appendChild(dayElement);
 
             // Add an event listener to toggle the GCash options and form
-            onlinePaymentRadio.addEventListener("change", function () {
-                if (this.checked) {
-                    gcashOptions.style.display = "block";
-                    gcashBookingForm.style.display = "block";
-                } else {
-                    gcashOptions.style.display = "none";
-                    gcashBookingForm.style.display = "none";
-                }
-            });
+            // onlinePaymentRadio.addEventListener("change", function () {
+            //     if (this.checked) {
+            //         gcashOptions.style.display = "block";
+            //         gcashBookingForm.style.display = "block";
+            //     } else {
+            //         gcashOptions.style.display = "none";
+            //         gcashBookingForm.style.display = "none";
+            //     }
+            // });
+
+            // Add an event listener to close the booking form when clicking anywhere on the screen
+            //     window.addEventListener("click", function (event) {
+            //     if (event.target !== bookingForm) {
+            //         closeBookingForm();
+            //     }
+            // });
 
             if (dayOfWeek === 6) {
                 currentRow = document.createElement("tr");
@@ -412,6 +411,21 @@
             const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
             
             return philippinesHolidays.includes(formattedDate);
+        }
+
+        // Function to populate session-category select options based on session-type
+        function populateSessionCategoryOptions() {
+            const selectedSessionType = sessionTypeSelect.value;
+            const options = categories[selectedSessionType] || [];
+
+            sessionCategorySelect.innerHTML = ""; // Clear previous options
+
+            options.forEach((opt) => {
+                const optionEl = document.createElement("option");
+                optionEl.value = opt;
+                optionEl.textContent = opt;
+                sessionCategorySelect.appendChild(optionEl);
+            });
         }
         generateCalendar(selectedDate);
     </script>
