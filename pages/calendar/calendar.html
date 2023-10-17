@@ -84,19 +84,27 @@
             </div>
 
             <!-- Add the payment-related label and options -->
-            <label for="payment-method">How would you like to do the payment?</label>
-            <div>
-                <input type="radio" id="cash-payment" name="PaymentMethod" value="cash" required>
-                <label for="cash-payment">Cash</label><br>
-            </div>
-            <div>
-                <input type="radio" id="online-payment" name="PaymentMethod" value="online" required>
-                <label for="online-payment">GCash</label><br>
-                <select id="gcash-options" name="GCashOption">
-                    <option value="account_name">Account Name</option>
-                    <option value="mobile_number">Mobile Number</option>
-                </select>
-            </div>
+        <label for="payment-method">How would you like to do the payment?</label>
+        <div>
+            <input type="radio" id="cash-payment" name="PaymentMethod" value="cash" required>
+            <label for="cash-payment">Cash</label><br>
+        </div>
+        <div>
+            <input type="radio" id="online-payment" name="PaymentMethod" value="online" required>
+            <label for="online-payment">GCash</label><br>
+
+        </div>
+
+        <!-- Small Booking Form for GCash -->
+        <div id="gcash-booking-form" style="display: none;">
+            <!-- Add your GCash-specific form fields here -->
+            <!-- For example, input fields for account name and mobile number -->
+            <label for="gcash-account-name">Account Name:</label>
+            <input type="text" id="gcash-account-name" name="GCashAccountName" class="booking-input" required><br><br>
+
+            <label for="gcash-mobile-number">Mobile Number:</label>
+            <input type="text" id="gcash-mobile-number" name="GCashMobileNumber" class="booking-input" required><br><br>
+        </div>
 
             <button type="submit">Submit</button>
 </div>
@@ -131,7 +139,9 @@
             "2023-08-12",  // Feast of the Immaculate Conception
             // Add more holidays as needed
         ];
-        
+        const onlinePaymentRadio = document.getElementById("online-payment");
+        const gcashOptions = document.getElementById("gcash-options");
+        const gcashBookingForm = document.getElementById("gcash-booking-form");
 
         const selectedDate = new Date();
 
@@ -305,6 +315,17 @@
             dateTextContainer.appendChild(dateSpan);
             dayElement.appendChild(dateTextContainer);
             currentRow.appendChild(dayElement);
+
+            // Add an event listener to toggle the GCash options and form
+            onlinePaymentRadio.addEventListener("change", function () {
+                if (this.checked) {
+                    gcashOptions.style.display = "block";
+                    gcashBookingForm.style.display = "block";
+                } else {
+                    gcashOptions.style.display = "none";
+                    gcashBookingForm.style.display = "none";
+                }
+            });
 
             if (dayOfWeek === 6) {
                 currentRow = document.createElement("tr");

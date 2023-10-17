@@ -157,3 +157,13 @@ form .signup-link a:hover {
 .centered {
   text-align: center;
 }
+
+.password-toggle {
+  position: absolute;
+  font-size: 24px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1;
+}
