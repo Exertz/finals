@@ -119,55 +119,6 @@
             cursor: not-allowed;
         }
 
-        /* Hamburger menu icon styles */
-        .hamburger-menu {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            cursor: pointer;
-            z-index: 2;
-            transition: transform 0.3s ease;
-        }
-
-        .hamburger-menu:hover {
-            transform: scale(1.1);
-        }
-
-        .hamburger-menu div {
-            width: 30px;
-            height: 4px;
-            background-color: #333;
-            margin: 6px 0;
-            transition: background-color 0.3s ease;
-        }
-
-        .hamburger-menu:hover div {
-            background-color: #0066CC;
-        }
-
-        /* Menu styles */
-        .menu {
-            position: absolute;
-            top: 40px;
-            left: 10px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 3;
-            transition: transform 0.3s ease;
-        }
-
-        .menu:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Menu item styles */
-        .menu-item {
-            padding: 10px;
-            cursor: pointer;
-        }
-
         /* Booking Form styles */
         .booking-form {
             display: none;
@@ -196,6 +147,20 @@
         /* Heading styles for the booking form */
         .booking-form h2 {
             margin-top: 0;
+        }
+
+                /* CSS for consistent input sizes */
+        .booking-input {
+            width: 100%; /* Set the width as needed */
+            padding: 5px; /* Add padding as needed */
+            margin-bottom: 10px; /* Add margin between input fields */
+        }
+
+        /* Additional CSS for select elements */
+        .select {
+            width: 100%; /* Set the width as needed */
+            padding: 5px; /* Add padding as needed */
+            margin-bottom: 10px; /* Add margin between select elements */
         }
 
         /* Style for select box */
@@ -260,7 +225,19 @@
             margin-right: 10px;
         }
 
-        #city,
-        #postal-code {
+        #city {
             width: 100%;
+        }
+        
+        .holiday {
+            background-color: red; /* You can change this to your desired color */
+            color: white; /* Text color */
+            /* Add other styles as needed */
+        }
+        
+        /* Define the style for special holidays */
+        .special-holiday {
+            background-color: orange; /* You can change this to your desired color */
+            color: white; /* Text color */
+            /* Add other styles as needed */
         }
