@@ -149,7 +149,7 @@
             margin-top: 0;
         }
 
-                /* CSS for consistent input sizes */
+        /* CSS for consistent input sizes */
         .booking-input {
             width: 100%; /* Set the width as needed */
             padding: 5px; /* Add padding as needed */
@@ -247,3 +247,4 @@
             display: inline-block;
             margin-right: 10px; /* Adjust the margin as needed */
           }
+          
