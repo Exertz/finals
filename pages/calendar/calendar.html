@@ -96,7 +96,6 @@
                 </div>
                 <div>
                     <input type="text" id="city" name="City" placeholder="City" required style="width: 30%;">
-                    <input type="text" id="postal-code" name="PostalCode" placeholder="Postal/Zip Code" required style="width: 30%;">
             </div>
 
             <!-- Add Booking Suggestions Input -->
@@ -140,8 +139,6 @@
     <script>
         const daysElement = document.querySelector(".days");
         const currentMonthElement = document.querySelector(".current-month");
-        const menuElement = document.getElementById("menu");
-        const hamburgerMenu = document.querySelector(".hamburger-menu");
         const bookingForm = document.getElementById("booking-form");
         const bookingButton = document.getElementById("booking-button");
         const sessionTypeSelect = document.getElementById("session-type");
@@ -375,12 +372,6 @@
             selectedDate.setMonth(prevMonth);
             generateCalendar(selectedDate);
         }
-
-        function toggleMenu() {
-            menuElement.style.display = menuElement.style.display === 'block' ? 'none' : 'block';
-            hamburgerMenu.classList.toggle('change');
-        }
-
         generateCalendar(selectedDate);
     </script>
 </body>

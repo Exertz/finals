@@ -18,10 +18,11 @@ if ($conn->connect_error) {
   $fname = $_POST["first_name"];
   $lname = $_POST["last_name"];
   $email = $_POST["email"];
+  $phonenumber = $_POST["phone_number"]
   $password = $_POST["password"];
 
   // Insert data into the database
-  $sql = "INSERT INTO users (first_name, last_name, email, password) VALUES ('$fname', '$lname', '$email', '$password')";
+  $sql = "INSERT INTO users (first_name, last_name, email, phone_number, password) VALUES ('$fname', '$lname', '$email', '$phonenumber MD5('$password'))";
   $stmt = $conn->prepare($sql);
 
   if ($stmt->execute()) {
