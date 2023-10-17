@@ -77,6 +77,11 @@
             position: relative;
         }
 
+        td:not(.past-date) {
+            background-color: white; /* Change this to your preferred white color */
+            color: black; /* Text color */
+        }
+
         /* Header cell styles */
         th {
             background-color: #808080;
