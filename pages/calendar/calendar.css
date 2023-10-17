@@ -230,42 +230,47 @@
         }
         
         .holiday {
-            background-color: red; /* You can change this to your desired color */
+            background: red; /* You can change this to your desired color */
             color: white; /* Text color */
             /* Add other styles as needed */
         }
         
         /* Define the style for special holidays */
-        .special-holiday {
-            background-color: orange; /* You can change this to your desired color */
-            color: white; /* Text color */
+        /* .special-holiday { */
+            /* background-color: orange; You can change this to your desired color */
+            /* color: white; Text color */
             /* Add other styles as needed */
-        }
+        /* } */
 
-        .legend {
+        /* .legend {
             display: flex;
             justify-content: center;
             margin-top: 20px;
-        }
+            max-width: 200px; /* Adjust the width as per your requirements */
+            /* margin: 0 auto; Center the legend container horizontally */
+            /* background-color: lightgray; Background color for the legend container */
+            /* padding: 10px; Add some padding to the legend container */
+            /* border: 1px solid #ddd; Add a border to the legend container */
+        /* } */
     
-        .legend-item {
-            margin: 0 10px; /* Adjust margin as needed */
-            display: flex;
-            align-items: center;
-        }
+        /* .legend-item { */
+            /* margin: 0 10px; Adjust margin as needed */
+            /* display: flex; */
+            /* align-items: center; */
+        /* } */
     
-        .legend-item::before {
+        /* .legend-item::before {
             content: "";
             width: 20px; /* Adjust the size as needed */
-            height: 20px; /* Adjust the size as needed */
-            margin-right: 5px;
-            display: inline-block;
-            border: 1px solid #000;
-        }
+            /* height: 20px; Adjust the size as needed */
+            /* margin-right: 5px; */
+            /* display: inline-block; */
+            /* border: 1px solid #000; */
+        /* } */ 
     
-        .today::before {
-            background: #00cc00; /* Green for today */
-        }
+        /* .today::before { */
+            /* background: #00cc00; Green for today */
+        /* } */ 
     
         /* .past-date::before { */
             /* background: #ff3300; Red for past dates */
