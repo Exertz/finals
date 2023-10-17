@@ -73,13 +73,28 @@
     // }
 
     function isEmailAlreadyUsed(email) {
-    // Replace this with your server-side logic to check if the email is already registered.
-    // You can make an AJAX request to your server for this check.
-    // Return true if the email is already used, false otherwise.
-    // For demonstration purposes, we'll assume that an email is already used if it's "test@example.com".
+        // Replace this with your server-side logic to check if the email is already registered.
+        // You can make an AJAX request to your server for this check.
+        // For demonstration purposes, we'll assume that an email is already used if it's "test@example.com".
+        return email.toLowerCase() === "test@example.com";
+      }
 
-    return email.toLowerCase() === "test@example.com";
-  }
+      // Function to handle form submission
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        // Get the email input field value
+        const emailInput = document.getElementById("email");
+        const email = emailInput.value.trim();
+
+        // Check if the email is already used
+        if (isEmailAlreadyUsed(email)) {
+          alert("This email is already registered. Please use a different email.");
+        } else {
+          // Continue with the form submission
+          event.target.submit();
+        }
+      }
 
   // Function to handle form submission
   function handleSubmit(event) {
@@ -100,7 +115,7 @@
 
   // Add a submit event listener to the form
   const registrationForm = document.querySelector("form");
-  registrationForm.addEventListener("submit", handleSubmit);
+      registrationForm.addEventListener("submit", handleSubmit);
   </script>
 </body>
 </html>
