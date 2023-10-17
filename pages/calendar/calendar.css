@@ -235,26 +235,15 @@
             /* Add other styles as needed */
         }
         
-        /* Define the style for special holidays */
-        /* .special-holiday { */
-            /* background-color: orange; You can change this to your desired color */
-            /* color: white; Text color */
-            /* Add other styles as needed */
-        /* } */
-
-        /* .legend {
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-        }
-
-        .legend-box {
+        .legend-item {
+            width: 20px; /* Adjust the width to your preference */
+            height: 20px; /* Adjust the height to your preference */
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-        }
-
-        .legend-label {
-            font-weight: bold;
-        } */
+            margin-right: 5px; /* Adjust the margin as needed */
+            border: 1px solid #000; /* Add a border for the legend items */
+          }
+          
+          .legend-text {
+            display: inline-block;
+            margin-right: 10px; /* Adjust the margin as needed */
+          }
