@@ -20,7 +20,10 @@
             <div class="field">
                <input type="password" required name="password">
                <label>Password</label>
-               <span class="password-toggle" id="password-toggle" onclick="togglePasswordVisibility()">&#x1F441;</span>
+               <!-- <div class="password-toggle">
+                  <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()">
+                  <label for="show-password">Show Password</label>
+              </div> -->
             </div>
             <div class="content">
                <div class="pass-link">
@@ -35,17 +38,17 @@
             </div>
          </form>
       </div>
-      <script>
-         function togglePasswordVisibility() {
-             const passwordField = document.getElementById("password");
-             const passwordToggle = document.getElementById("password-toggle");
- 
-             if (passwordField.type === "password") {
-                 passwordField.type = "text";
-             } else {
-                 passwordField.type = "password";
-             }
-         }
-      </script>
+      <!-- <script>
+           function togglePasswordVisibility() {
+                const passwordField = document.getElementById("password");
+                const showPasswordCheckbox = document.getElementById("show-password");
+
+                if (showPasswordCheckbox.checked) {
+                    passwordField.type = "text";
+                } else {
+                    passwordField.type = "password";
+                }
+            }
+      </script> -->
    </body>
 </html>
