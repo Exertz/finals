@@ -241,3 +241,36 @@
             color: white; /* Text color */
             /* Add other styles as needed */
         }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    
+        .legend-item {
+            margin: 0 10px; /* Adjust margin as needed */
+            display: flex;
+            align-items: center;
+        }
+    
+        .legend-item::before {
+            content: "";
+            width: 20px; /* Adjust the size as needed */
+            height: 20px; /* Adjust the size as needed */
+            margin-right: 5px;
+            display: inline-block;
+            border: 1px solid #000;
+        }
+    
+        .today::before {
+            background: #00cc00; /* Green for today */
+        }
+    
+        /* .past-date::before { */
+            /* background: #ff3300; Red for past dates */
+        /* } */
+    
+        /* .holiday::before {
+            background: #ffcc00; /* Yellow for holidays */
+        /* } */ 
